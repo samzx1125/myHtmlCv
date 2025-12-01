@@ -94,9 +94,20 @@
             display: none;
         }
 
+        #qrcode {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center horizontally */
+        }
+
         #qrcode > canvas {
             max-width: 30mm; /* A4 width */
             max-height: 30mm; /* A4 width */
+        }
+
+        #qrcode_link {
+            max-width: 30mm;
+            line-break: anywhere;
         }
     </style>
 </head>
@@ -111,9 +122,9 @@
         <span>Address: Kowloon City, KLN</span>
         <!--<span>Expected salary: HKD24,000 - 26,000</span>-->
     </div>
-    <div hidden>
+    <div id="qrcode_col">
         <div id="qrcode"></div>
-        <span>samzx1125.github.com/my_cv</span>
+        <span id="qrcode_link">CV.html on Github</span>
     </div> <!-- QR code -->
 </header>
 
@@ -241,13 +252,15 @@
 </body>
 
 <script>
-    const qr_lnk = "https://google.com/"
+    const qr_lnk = "https://samzx1125.github.io/myHtmlCv/CV_YeeYatSing"
     // Function to generate QR code
     function generateQRCode() {
         // Clear previous QR code
         $('#qrcode').empty();
         // Generate QR code
         $('#qrcode').qrcode(qr_lnk);
+        // fill the link under qrcode
+        // $('#qrcode_link').html(qr_lnk);
     }
 
     // Generate QR code on page load

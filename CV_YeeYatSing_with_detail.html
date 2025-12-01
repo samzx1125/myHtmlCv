@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yee Yat Sing, Sam - Resume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,6 +93,22 @@
         .project-detail {
             /*display: none;*/
         }
+
+        #qrcode {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center horizontally */
+        }
+
+        #qrcode > canvas {
+            max-width: 30mm; /* A4 width */
+            max-height: 30mm; /* A4 width */
+        }
+
+        #qrcode_link {
+            max-width: 30mm;
+            line-break: anywhere;
+        }
     </style>
 </head>
 <body>
@@ -104,8 +122,10 @@
         <span>Address: Kowloon City, KLN</span>
         <!--<span>Expected salary: HKD24,000 - 26,000</span>-->
     </div>
-    <div><img hidden src="[Profile Photo URL]" alt="Yee Yat Sing, Sam"
-              style="border-radius: 50%; width: 100px; height: auto;"></div> <!-- Optional -->
+    <div id="qrcode_col">
+        <div id="qrcode"></div>
+        <span id="qrcode_link">CV.html on Github</span>
+    </div> <!-- QR code -->
 </header>
 
 <div class="two-column">
@@ -229,6 +249,23 @@
         </section>
     </div>
 </div>
-
 </body>
+
+<script>
+    const qr_lnk = "https://samzx1125.github.io/myHtmlCv/CV_YeeYatSing_with_detail"
+    // Function to generate QR code
+    function generateQRCode() {
+        // Clear previous QR code
+        $('#qrcode').empty();
+        // Generate QR code
+        $('#qrcode').qrcode(qr_lnk);
+        // fill the link under qrcode
+        // $('#qrcode_link').html(qr_lnk);
+    }
+
+    // Generate QR code on page load
+    $(document).ready(function() {
+        generateQRCode();
+    });
+</script>
 </html>
